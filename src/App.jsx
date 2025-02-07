@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import settings from "./assets/settings.png";
 import Settings from "./Settings";
-import replay from "./assets/replay.png"
+import replay from "./assets/replay.png";
 import { TimerContext } from "./TimerContext";
 import "./app.css";
 
@@ -34,6 +34,16 @@ const App = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [buttonState, setButtonState] = useState("start");
   const [showSettings, setShowSettings] = useState(false);
+  const [backgroundImage, setBackgroundImage] = useState(null);
+
+  useEffect(() => {
+    if (backgroundImage) {
+      document.documentElement.style.setProperty(
+        "--background-image",
+        `url(${backgroundImage})`
+      );
+    }
+  }, [backgroundImage]);
 
   useEffect(() => {
     if (timeRemaining === 0) {
@@ -55,15 +65,6 @@ const App = () => {
   const seconds = timeRemaining % 60;
   const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
 
-  // useEffect(() => {
-  //   if (!isRunning) {
-  //     setTimeRemaining(pomodoro);
-  //     setTimer(pomodoro);
-  //   }
-  // }, [pomodoro, isRunning]);
-
-  
-  //button handlers
 
   const startTimer = () => {
     setIsRunning(true);
@@ -119,52 +120,70 @@ const App = () => {
     setShort(newShort);
     setLong(newLong);
     setShowSettings(false);
-    if (isRunning) stopTimer()
-      
-    if(timer === pomodoro){
+    if (isRunning) stopTimer();
+
+    if (timer === pomodoro) {
       setTimeRemaining(newPomodoro);
       setTimer(newPomodoro);
-    }else if(timer === short){
+    } else if (timer === short) {
       setTimeRemaining(newShort);
       setTimer(newShort);
-    }else if(timer === long){
+    } else if (timer === long) {
       setTimeRemaining(newLong);
       setTimer(newLong);
     }
-
   };
 
   const handleClickReset = () => {
     setTimeRemaining(timer);
     stopTimer();
-    setButtonState("start")
-  }
+    setButtonState("start");
+  };
 
   return (
     <>
-        <div className="mainContent">
-          <div className="buttonsContainer">
-            <button className={`buttons ${timer === pomodoro ? "active" : ""}`}  onClick={handleClickPomodoro}>pomodoro</button>
-            <button className={`buttons ${timer === short ? "active" : ""}`} onClick={handleClickShort}>short break</button>
-            <button className={`buttons ${timer === long ? "active" : ""}`} onClick={handleClickLong}>long break</button>
-          </div>
-
-          <div className="timer">
-            <h1>
-              {Math.floor(timeRemaining / 60)}:{formattedSeconds}
-            </h1>
-          </div>
-          <div className="lowerBtns">
-          <button className = "startBtn" onClick={handleClickStart}>{buttonState}</button>
-          <button className = "resetBtn" onClick={handleClickReset} ><img src={replay} alt="" /></button>
-          </div>
-          <div>
-            <button className="settingsBtn" onClick={handleClickSettings}>
-              <img src={settings} alt="settings" />
-            </button>
-          </div>
+      <div className="mainContent">
+        <div className="buttonsContainer">
+          <button
+            className={`buttons ${timer === pomodoro ? "active" : ""}`}
+            onClick={handleClickPomodoro}
+          >
+            pomodoro
+          </button>
+          <button
+            className={`buttons ${timer === short ? "active" : ""}`}
+            onClick={handleClickShort}
+          >
+            short break
+          </button>
+          <button
+            className={`buttons ${timer === long ? "active" : ""}`}
+            onClick={handleClickLong}
+          >
+            long break
+          </button>
         </div>
-        {showSettings && <Settings onSave={handleSaveSettings} />}
+
+        <div className="timer">
+          <h1>
+            {Math.floor(timeRemaining / 60)}:{formattedSeconds}
+          </h1>
+        </div>
+        <div className="lowerBtns">
+          <button className="startBtn" onClick={handleClickStart}>
+            {buttonState}
+          </button>
+          <button className="resetBtn" onClick={handleClickReset}>
+            <img src={replay} alt="" />
+          </button>
+        </div>
+        <div>
+          <button className="settingsBtn" onClick={handleClickSettings}>
+            <img src={settings} alt="settings" />
+          </button>
+        </div>
+      </div>
+      {showSettings && <Settings onSave={handleSaveSettings} onBackgroundChange={setBackgroundImage} />}
     </>
   );
 };
