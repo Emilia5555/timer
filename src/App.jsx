@@ -27,7 +27,7 @@ export const TimerProvider = ({ children }) => {
 };
 
 const App = () => {
-  const { pomodoro, short, long, setPomodoro, setShort, setLong } =
+  const { pomodoro, short, long, setPomodoro, setShort, setLong} =
     useContext(TimerContext);
   const [timer, setTimer] = useState(pomodoro);
   const [timeRemaining, setTimeRemaining] = useState(pomodoro);
@@ -35,6 +35,7 @@ const App = () => {
   const [buttonState, setButtonState] = useState("start");
   const [showSettings, setShowSettings] = useState(false);
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [textColor, setTextColor] = useState("black")
 
   useEffect(() => {
     if (backgroundImage) {
@@ -44,6 +45,14 @@ const App = () => {
       );
     }
   }, [backgroundImage]);
+
+  useEffect(() => {
+    if (textColor) {
+      document.documentElement.style.setProperty("--textColor", textColor);
+    }
+  }, [textColor]);
+
+
 
   useEffect(() => {
     if (timeRemaining === 0) {
@@ -64,7 +73,6 @@ const App = () => {
 
   const seconds = timeRemaining % 60;
   const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
-
 
   const startTimer = () => {
     setIsRunning(true);
@@ -116,12 +124,23 @@ const App = () => {
   };
 
   const handleSaveSettings = (newPomodoro, newShort, newLong) => {
-    setPomodoro(newPomodoro);
-    setShort(newShort);
-    setLong(newLong);
-    setShowSettings(false);
-    if (isRunning) stopTimer();
 
+    //avoids setting timers to NaN
+    if (!isNaN(newPomodoro)) {
+      setPomodoro(newPomodoro);
+    }
+    
+    if (!isNaN(newShort)) {
+      setShort(newShort);
+    }
+    
+    if (!isNaN(newLong)) {
+      setLong(newLong);
+    }
+
+    
+    if (isRunning) stopTimer();
+    console.log(timer)
     if (timer === pomodoro) {
       setTimeRemaining(newPomodoro);
       setTimer(newPomodoro);
@@ -132,6 +151,8 @@ const App = () => {
       setTimeRemaining(newLong);
       setTimer(newLong);
     }
+    
+    setShowSettings(false);
   };
 
   const handleClickReset = () => {
@@ -183,7 +204,14 @@ const App = () => {
           </button>
         </div>
       </div>
-      {showSettings && <Settings onSave={handleSaveSettings} onBackgroundChange={setBackgroundImage} />}
+      {showSettings && (
+        <Settings
+          onSave={handleSaveSettings}
+          onBackgroundChange={setBackgroundImage}
+          setShowSettings={setShowSettings}
+          setTextColor={setTextColor}
+        />
+      )}
     </>
   );
 };
