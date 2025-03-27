@@ -46,7 +46,7 @@ const Settings = ({
       <div className="settingsContainer">
         <form onSubmit={handleSubmit}>
           <br />
-          <label>Set pomodoro </label>
+          <h6>Set pomodoro</h6>
           <input
             type="number"
             value={newPomodoro / 60}
@@ -56,8 +56,7 @@ const Settings = ({
             placeholder="25"
           />
           <br />
-
-          <label>Set short break </label>
+            <h6>Set short break</h6>
           <input
             type="number"
             value={newShort / 60}
@@ -67,8 +66,7 @@ const Settings = ({
             placeholder="5"
           />
           <br />
-
-          <label>Set long break </label>
+            <h6>Set long break</h6>
           <input
             type="number"
             value={newLong / 60}
@@ -77,16 +75,19 @@ const Settings = ({
           />
           <br />
 
-          <button type="submit">Save</button>
+        <h6>
+          Set background image: </h6>
+          <input className="photoInput" type="file" accept="image/*" onChange={handleImg} />
+          
+        
+        <h6>
+          Set text color:  </h6> 
+          
+          <input className="colorInput" type="color" onChange={handleColor} />
+          
+        
+        <button className="saveBtn" type="submit">Save</button>
         </form>
-        <h6>
-          Set background image:
-          <input type="file" accept="image/*" onChange={handleImg} />
-        </h6>
-        <h6>
-          Set text color:
-          <input type="color" onChange={handleColor} />
-        </h6>
       </div>
     </>
   );
