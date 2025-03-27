@@ -1,8 +1,8 @@
 
 
 body{
-  background-color: rgb(239, 222, 255);
-  height: 90vh;
+  background-color: rgba(0, 0, 0, 0.597);
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,6 +13,7 @@ body{
   background-repeat: no-repeat;
  
   color: var(--textColor);
+  text-shadow: 2px 1px 3px #00000075;
 
 }
 
@@ -25,6 +26,8 @@ body{
   border: none;
   padding: 0;
   outline: none;
+  /* drop-shadow(5px 5px 15px red); */
+  
 }
 
 .settingsBtn img {
@@ -52,6 +55,7 @@ body{
   outline: none;
   font-size: 30px;
   padding: 17px;
+  
 
 
 }
@@ -64,6 +68,7 @@ body{
   border: 4px solid white;
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.352);
+  box-shadow: 1px 1px 3px #00000075;
 
 }
 
@@ -85,7 +90,7 @@ body{
   padding: 17px;
   padding-left: 25px;
   padding-right: 25px;
-  /* font-weight: bold; */
+  box-shadow: 1px 1px 3px #00000057;
 
 }
 
@@ -132,14 +137,15 @@ input{
 
 .settingsContainer{
   
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: #000000ee;
+
   color: white;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 650px;
+
+  padding: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -163,8 +169,8 @@ input{
 h6{
   font-family: "verdana", "helvetica";
   font-weight: 500;
-  font-size: 30px;
-  margin: 20px;
+  font-size: 20px;
+  margin: 10px;
 }
 
 input{
@@ -201,7 +207,7 @@ input{
     height: auto;
     padding: 20px;
     font-size: 16px;
-    
+    height: 100vh;
   }
 
   .mainContent {
@@ -209,14 +215,14 @@ input{
   }
 
   .buttons {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 10px;
     color: rgb(0, 0, 0);
   }
 
   .buttonsContainer {
-    flex-direction: column;
-
-    border-radius: 30px;
+    flex-direction: row;
+    border-radius: 35px;
   }
 
   .startBtn {
@@ -235,8 +241,8 @@ input{
   }
 
   .settingsContainer {
-    width: 50%;
-    height: auto;
+    /* width: 50%;
+    height: auto; */
     margin: 5px;
     font-size: 20px;
     color: rgb(255, 255, 255);
@@ -256,7 +262,6 @@ input{
 
   h6 {
 
-      font-family: "verdana", "helvetica";
       font-weight: 500;
       font-size: 15px;
       margin: 5px;
@@ -265,7 +270,6 @@ input{
   .buttons.active {
     background-color: #ffffff; /* Highlights active button */
     color: rgb(0, 0, 0);
-    font-weight: bold;
     border-radius: 50px;
     
   }
@@ -277,6 +281,7 @@ input{
     color: black;
     width: 140px;
     height: 20px;
+    text-shadow: none;
   }
 
 

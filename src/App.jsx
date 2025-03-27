@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import settings from "./assets/settings.png";
 import Settings from "./Settings";
 import replay from "./assets/replay.png";
+import defaultBackground from "./assets/default_background.jpg";
 import { TimerContext } from "./TimerContext";
 import "./app.css";
 
@@ -34,8 +35,8 @@ const App = () => {
   const [isRunning, setIsRunning] = useState(false);
   const [buttonState, setButtonState] = useState("start");
   const [showSettings, setShowSettings] = useState(false);
-  const [backgroundImage, setBackgroundImage] = useState(null);
-  const [textColor, setTextColor] = useState("black")
+  const [backgroundImage, setBackgroundImage] = useState(defaultBackground);
+  const [textColor, setTextColor] = useState("white")
 
   useEffect(() => {
     if (backgroundImage) {
