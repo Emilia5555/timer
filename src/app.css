@@ -1,14 +1,11 @@
 
 @media (max-width: 768px) {
+
   body {
     height: auto;
     padding: 20px;
     font-size: 16px;
-  }
-  body {
-    height: auto;
-    padding: 20px;
-    font-size: 16px;
+    color: black;
   }
 
   .mainContent {
@@ -23,7 +20,7 @@
   .buttonsContainer {
     flex-direction: column;
     gap: 10px;
-    padding: 10px;
+    padding: 0px;
     width: 100%;
     border-radius: 30px;
   }
