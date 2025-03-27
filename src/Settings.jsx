@@ -20,7 +20,9 @@ const Settings = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(newPomodoro, newShort, newLong);
+    if (newPomodoro >= 0 && newShort>=0 && newLong >= 0) {
+      onSave(newPomodoro, newShort, newLong);
+    }
   };
 
   const handleImg = (e) => {

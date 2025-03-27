@@ -141,6 +141,8 @@ const App = () => {
     
     if (isRunning) stopTimer();
     console.log(timer)
+
+    
     if (timer === pomodoro) {
       setTimeRemaining(newPomodoro);
       setTimer(newPomodoro);
@@ -166,6 +168,7 @@ const App = () => {
       <div className="mainContent">
         <div className="buttonsContainer">
           <button
+          // dynamically sets classname- if timer == pomodoro class is buttons.active else class is buttons
             className={`buttons ${timer === pomodoro ? "active" : ""}`}
             onClick={handleClickPomodoro}
           >
